@@ -120,28 +120,32 @@ function merge(left, right, myArr) {
   return myArr;
 }
 
-console.log(mSort(myArr));
+//console.log(mSort(myArr));
+const bucketString =
+  "0 30 25 32 72 70 51 42 25 24 53 55 78 50 13 40 48 32 26 2 14 33 45 72 56 44 21 88 27 68 15 62 93 98 73 28 16 46 87 28 65 38 67 16 85 63 23 69 64 91 9 70 81 27 97 82 6 88 3 7 46 13 11 64 76 31 26 38 28 13 17 69 90 1 6 7 64 43 9 73 80 98 46 27 22 87 49 83 6 39 42 51 54 84 34 53 78 40 14 100";
+let bucketArr = bucketString.split(" ");
+bucketArr = bucketArr.map(item => Number(item));
 
-function testMerge(left, right, array) {
-  let leftIndex = 0;
-  let rightIndex = 0;
-  let outputIndex = 0;
-  while (leftIndex < left.length && rightIndex < right.length) {
-    if (left[leftIndex] < right[rightIndex]) {
-      array[outputIndex++] = left[leftIndex++];
-    } else {
-      array[outputIndex++] = right[rightIndex++];
-    }
-  }
+function bSort(array, start=0, end=array.length){
+  /* 
+  const lowest =0
+  const highest=100
+  what if->
+  create a BST , O(n+ log(n))=> 1.4n => n
 
-  for (let i = leftIndex; i < left.length; i++) {
-    array[outputIndex++] = left[i];
-  }
+   30 -> insert BST  key=30 value=+1
+   32
+   30
+      read DFS in-order O(n)
+  */
 
-  for (let i = rightIndex; i < right.length; i++) {
-    array[outputIndex++] = right[i];
-  }
-  return array;
+ return array;
 }
 
-// console.log(testMergeSort(myArr));
+//const BinarySearchTree = require('./bst');
+//let myTree = BinarySearchTree;
+//console.log("Hello", bSort(bucketArr));
+
+
+
+
