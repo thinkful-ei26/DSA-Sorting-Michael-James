@@ -126,7 +126,7 @@ const bucketString =
 let bucketArr = bucketString.split(" ");
 bucketArr = bucketArr.map(item => Number(item));
 
-function bSort(array, start=0, end=array.length){
+function bSort(array, start = 0, end = array.length) {
   /* 
   const lowest =0
   const highest=100
@@ -139,13 +139,35 @@ function bSort(array, start=0, end=array.length){
       read DFS in-order O(n)
   */
 
- return array;
+  return array;
 }
 
 //const BinarySearchTree = require('./bst');
 //let myTree = BinarySearchTree;
 //console.log("Hello", bSort(bucketArr));
 
+const newArr = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+function randomArr(arr) {
+  //swap
+  //console.log(Math.random(arr.length));
+  // loop through each item and perform a random swap
+  for (let i = 0; i < arr.length; i++) {
+    swap(arr, i, Math.floor(Math.random() * Math.floor(arr.length)));
+  }
+  return arr;
+}
 
+//console.log(randomArr(newArr));
 
+// sort 20 books in alphabetical order
 
+let books = [
+  "The Telling Pool",
+  "Eragon",
+  "Eldest",
+  "Computer science for dummies",
+  "Book",
+  "More books"
+];
+books = books.map(item => item.toLowerCase());
+console.log(qSort(books));
