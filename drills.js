@@ -9,7 +9,6 @@ let myArr = myString.split(" ");
 myArr = myArr.map(item => Number(item));
 let counter = 0;
 
-
 // pivot function
 function partition(arr, start, end, count) {
   // create pivot from the end arr item
@@ -21,13 +20,12 @@ function partition(arr, start, end, count) {
     if (arr[i] <= pivot) {
       swap(arr, i, j);
       j++;
-     // count.push(1);
-     count++;
+      // count.push(1);
+      count++;
     }
-
-  }//for ends here
+  } //for ends here
   //count++;
-//console.log(count);
+  //console.log(count);
   //return the pivot point
   // j is the last location that we swapped on.
   swap(arr, end - 1, j);
@@ -61,24 +59,89 @@ function qSort(arr, start = 0, end = arr.length, count) {
   // uses the index from the partition to recursively call on a smaller set of the arr until it hits the base case of 1 item in the arr.
   arr = qSort(arr, start, middle, count);
   //count.push(1);
-count++;
+  count++;
   // same but for the right part of the array
   arr = qSort(arr, middle + 1, end, count);
- // count.push(1);
- count++;
+  // count.push(1);
+  count++;
   //log out at the very end of each qSort function call;
- console.log("Count is:", count);
+  console.log("Count is:", count);
   return arr;
 }
 
-qSort(myArr, 0, myArr.length, counter);
+//qSort(myArr, 0, myArr.length, counter);
 
 //console.log(Array.prototype.sort.toString());
 
-function mSort(){
+function mSort(myArr) {
+  // split the arr at the middle
+  // if the
+  if (myArr.length <= 1) {
+    return myArr;
+  }
+  const end = myArr.length;
+  const middle = Math.floor(myArr.length / 2);
+  let left = myArr.slice(0, middle);
+  let right = myArr.slice(middle, end);
 
+  left = mSort(left);
+  right = mSort(right);
+
+  return merge(left, right, myArr);
+  //recursively call msort on the
 }
 
-function merge(){
+// works but we use more memory. Be careful when making solutions to pay attention to the data structures used for temps.
+function merge(left, right, myArr) {
+  // left right combine at the end
+  //
+  let leftCount = 0;
+  let rightCount = 0;
+  let resultsIndex = 0;
+  // [1,6,7,10,13,2,3,8,9,11,14]
+  // [1,6,7,10,13]
+  // [2,3,8,9,11,14]
+  // left [4] right [9]
+  //
+  while (leftCount < left.length && rightCount < right.length) {
+    if (left[leftCount] < right[rightCount]) {
+      myArr[resultsIndex++] = left[leftCount++];
+    } else {
+      myArr[resultsIndex++] = right[rightCount++];
+    }
+  }
+  while (leftCount < left.length) {
+    myArr[resultsIndex++] = left[leftCount++];
+  }
 
+  while (rightCount < right.length) {
+    myArr[resultsIndex++] = right[rightCount++];
+  }
+  return myArr;
 }
+
+console.log(mSort(myArr));
+
+function testMerge(left, right, array) {
+  let leftIndex = 0;
+  let rightIndex = 0;
+  let outputIndex = 0;
+  while (leftIndex < left.length && rightIndex < right.length) {
+    if (left[leftIndex] < right[rightIndex]) {
+      array[outputIndex++] = left[leftIndex++];
+    } else {
+      array[outputIndex++] = right[rightIndex++];
+    }
+  }
+
+  for (let i = leftIndex; i < left.length; i++) {
+    array[outputIndex++] = left[i];
+  }
+
+  for (let i = rightIndex; i < right.length; i++) {
+    array[outputIndex++] = right[i];
+  }
+  return array;
+}
+
+// console.log(testMergeSort(myArr));
